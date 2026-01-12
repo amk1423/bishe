@@ -16,7 +16,7 @@ DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 # 显存如果不够（报错 OOM），把这里改成 4
 BATCH_SIZE = 8
 LR = 0.0001
-EPOCHS = 100
+EPOCHS = 500
 INPUT_HEIGHT = 384
 INPUT_WIDTH = 480
 
@@ -147,7 +147,7 @@ if __name__ == '__main__':
     # 模型加载/创建
     if os.path.exists(MODEL_SAVE_PATH):
         print(f"🔄 加载已有模型继续训练: {MODEL_SAVE_PATH}")
-        model = torch.load(MODEL_SAVE_PATH)
+        model = torch.load(MODEL_SAVE_PATH, weights_only=False)
     else:
         print("✨ 创建全新 DeepLabV3+ (MobileNetV2) 模型...")
         try:
